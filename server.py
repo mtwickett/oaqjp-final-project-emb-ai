@@ -16,14 +16,14 @@ def emotion_detector_endpoint():
     text_to_analyze = request.args.get("textToAnalyze")
     emotion_scores = emotion_detector(text_to_analyze)
     return (
-        f'For the given statement, the system response is \
-        {emotion_scores['anger']}, \
-        {emotion_scores['disgust']}, \
-        {emotion_scores['fear']}, \
-        {emotion_scores['joy']} and \
-        {emotion_scores['sadness']}. \
-        The dominant emotion is {emotion_scores['dominant_emotion']}.'
-    )
+    "For the given statement, the system response is "
+    f"'anger': {emotion_scores['anger']}, "
+    f"'disgust': {emotion_scores['disgust']}, "
+    f"'fear': {emotion_scores['fear']}, "
+    f"'joy': {emotion_scores['joy']} and "
+    f"'sadness': {emotion_scores['sadness']}. "
+    f"The dominant emotion is {emotion_scores['dominant_emotion']}."
+)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
