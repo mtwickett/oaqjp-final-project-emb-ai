@@ -1,18 +1,21 @@
+"""Flask server for the Emotion Detection web app."""
+
 from flask import Flask, render_template, request
-import json
 
 from EmotionDetection import emotion_detector
 
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def home():
+    """Render the app homepage."""
     return render_template("index.html")
-
 
 @app.route("/emotionDetector", methods=["GET"])
 def run_sentiment_analysis():
+    """Analyze text and return a formatted emotion summary."""
     text_to_analyze = request.args.get("textToAnalyze")
 
     emotion_scores = emotion_detector(text_to_analyze)
