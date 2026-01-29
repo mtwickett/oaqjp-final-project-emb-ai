@@ -12,9 +12,14 @@ def home():
 
 
 @app.route("/emotionDetector", methods=["GET"])
-def emotion_detector_endpoint():
+def run_sentiment_analysis():
     text_to_analyze = request.args.get("textToAnalyze")
+
     emotion_scores = emotion_detector(text_to_analyze)
+
+    if emotion_scores.get("dominant_emotion") is None:
+        return "Invalid text! Please try again!"
+
     return (
     "For the given statement, the system response is "
     f"'anger': {emotion_scores['anger']}, "
